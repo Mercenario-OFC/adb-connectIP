@@ -1,0 +1,18 @@
+#!/bin/bash
+
+for v in $(seq 100); do
+    OUTPUT="$(adb connect ${1}:5555 2> /dev/null)"
+   if [[ $OUTPUT = *connected* ]]; then
+      echo "[!] conectado a ${1}:5555"
+ sleep 1s
+        adb -s ${1}:5555 shell
+      exit 1
+  fi
+      echo "[$v] conectando..."
+sleep 2s
+done
+     echo "[!] nao foi possivel se conectar"
+sleep 3s && clear
+    echo "[+] iniciando uma nova tentativa com os dados anteriores."
+ conectar ${1}
+
